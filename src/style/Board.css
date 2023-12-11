@@ -1,0 +1,97 @@
+.Board{
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    background-color: #00000080;
+}
+.ModalSection{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background: white;
+    color: gray;
+    font-weight: 600;
+    width: 450px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
+}
+.TaskName{
+    display: flex;
+    flex-direction: column;
+}
+.TaskName input{
+    background: transparent;
+    border: 1px solid #757575;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 16px;
+}
+.column{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+.column input{
+    background: transparent;
+    border: 1px solid #757575;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+ 
+}
+.column button{
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.NewCol {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    margin-top: 16px;
+    font-family: inherit;
+    background-color: #635fc7;
+    color: #fff;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  
+}
+
+.SaveCol {
+    border-radius: 8px;
+    margin-top: 16px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fff;
+    border: 1px solid #635fc7;
+    color: #635fc7;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  
+
+}
+.BoardColumns {
+    margin-top: 16px;
+}
+h3{
+    color: black;
+}
