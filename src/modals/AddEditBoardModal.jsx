@@ -55,12 +55,13 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
   };
 
   const onSubmit = (type) => {
-    setBoardModalOpen(false);
+   
     if (type === "add") {
       dispatch(boardsSlice.actions.addBoard({ name, columns: newColumns }));
     } else {
       dispatch(boardsSlice.actions.editBoard({ name, columns: newColumns }));
     }
+    setBoardModalOpen(false); // işlem tamamlanana kadar yeni durumu görmek için sona attık. yoksa değişikliği göremiyrm.
   };
 
   return (
