@@ -7,6 +7,10 @@ import iconDown from "../assets/icon-chevron-down.svg";
 import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import AddEditTaskModal from "../modals/AddEditTaskModal";
+import ElipsisMenu from "./ElipsisMenu";
+import DeleteModal from "../modals/DeleteModal";
+import boardsSlice from "../redux/boardSlice";
+import { SlOptionsVertical } from "react-icons/sl";
 
 function Header({ setBoardModalOpen, boardModalOpen }) {
   const dispatch = useDispatch();
@@ -15,6 +19,26 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
   const [boadType, setBoadType] = useState("add");
   const boards = useSelector((state) => state.boards);
   const board = boards.find((board) => board.isActive);
+  const [isElipsisOpen, setIsElipsisOpen] = useState(false);
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  
+
+  const setOpenEditModal = () => {
+    setBoardModalOpen(true);
+    setIsElipsisOpen(false);
+  };
+
+  const setOpenDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+    setIsElipsisOpen(false);
+  };
+
+  const onDeleteBtnClick =() => {
+    dispatch (boardsSlice.actions.deleteBoard())
+    dispatch(boardsSlice.actions.setBoardActive({index : 0}))
+    setIsDeleteModalOpen(false)
+  }
 
   return (
     <div className="Navbar">
@@ -34,9 +58,30 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
         <div className="NavbarBtn">
           <button>+ Add New Task</button>
 
-          <button onClick={() => {
-            setOpenAddEditTask(state =>! state)
-          }} >+</button>
+          <button
+            onClick={() => {
+              setOpenAddEditTask((state) => !state);
+            }}
+          >
+            +
+          </button>
+
+          <button className="DeleteButton"
+            onClick={() => {
+              setBoadType('edit');
+              setOpenDropdown(false);
+              setIsElipsisOpen((state) => !state);
+            }}
+          >
+         <SlOptionsVertical color="grey"  size={18}/>
+          </button>
+
+          {isElipsisOpen && <ElipsisMenu
+            setOpenDeleteModal={setOpenDeleteModal}
+            setOpenEditModal={setOpenEditModal}
+            type='Boards' />
+          }
+
         </div>
       </header>
 
@@ -53,8 +98,19 @@ function Header({ setBoardModalOpen, boardModalOpen }) {
         />
       )}
 
-{openAddEditTask && <AddEditTaskModal setIsAddTaskModalOpen={setOpenAddEditTask} device='mobile' type='add' />}
-
+      {openAddEditTask && (
+        <AddEditTaskModal
+          setIsAddTaskModalOpen={setOpenAddEditTask}
+          device="mobile"
+          type="add"
+        />
+      )}
+      {
+        isDeleteModalOpen && <DeleteModal 
+        setIsDeleteModalOpen={setIsDeleteModalOpen}
+        onDeleteBtnClick={onDeleteBtnClick}
+         title={board.name} type='board'/>
+      }
     </div>
   );
 }

@@ -1,40 +1,50 @@
 import React, { useState } from "react";
 import "../style/Board.css";
-import { v4 as uuidv4, validate } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
-import boardsSlices from "../redux/boardSlice";
+import { useDispatch, useSelector } from "react-redux";
+import boardsSlice from "../redux/boardSlice";
 
 function AddEditBoardModal({ setBoardModalOpen, type }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  const [isFirstLoad, setisFirstLoad] = useState(true);
   const [isValid, setIsValid] = useState(true);
+
+  const board = useSelector((state) => state.boards.find((board) => board.isActive));
   const [newColumns, setNewColumns] = useState([
-    { name: "Todo", task: [], id: uuidv4() },
-    { name: "Doing", task: [], id: uuidv4() },
+    { name: "Todo", tasks: [], id: uuidv4() },
+    { name: "Doing", tasks: [], id: uuidv4() },
   ]);
-  // kolon adını değişitiriyo
+
+  if (type === 'edit' && isFirstLoad && board) {
+    setNewColumns(
+      board.columns.map((col) => ({ ...col, id: uuidv4() }))
+    );
+    setName(board.name);
+    setisFirstLoad(false);
+  }
+
   const onChange = (id, newValue) => {
-    setNewColumns((pervState) => {
-      const newState = [...pervState];
-      const column = newState.find((col) => col.id == id);
-      column.name = newValue;
+    setNewColumns((prevState) => {
+      const newState = [...prevState];
+      const column = newState.find((col) => col.id === id);
+      if (column) {
+        column.name = newValue;
+      }
       return newState;
     });
   };
 
-  //kolon silme işlevi
   const onDelete = (id) => {
-    setNewColumns((prevColumns) => prevColumns.filter((el) => el.id !== id));
+    setNewColumns((prevState) => prevState.filter((col) => col.id !== id));
   };
-// Doğrulama işlevi
+
   const validate = () => {
     setIsValid(false);
-     // Board adının boş olmaması kontrolü
     if (!name.trim()) {
       return false;
     }
-    // Kolon isimlerinin boş olmaması kontrolü
     for (let i = 0; i < newColumns.length; i++) {
       if (!newColumns[i].name.trim()) {
         return false;
@@ -44,15 +54,15 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
     return true;
   };
 
-  const onsubmit = (type) => {
+  const onSubmit = (type) => {
     setBoardModalOpen(false);
-     // Tür kontrolü yaparak uygun dispatch işlemini gerçekleştirme
     if (type === "add") {
-     dispatch(boardsSlices.actions.addBoard({name,newColumns }))
+      dispatch(boardsSlice.actions.addBoard({ name, columns: newColumns }));
     } else {
-        dispatch(boardsSlices.actions.editBoard({name,newColumns }))
+      dispatch(boardsSlice.actions.editBoard({ name, columns: newColumns }));
     }
   };
+
   return (
     <div
       className="Board"
@@ -64,7 +74,7 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
       }}
     >
       <div className="ModalSection">
-        <h3 className="">{type === "edit" ? "Edit" : "Add New"}Board</h3>
+        <h3 className="">{type === "edit" ? "Edit" : "Add New"} Board</h3>
         <div className="TaskName">
           <label>Board Column</label>
           <input
@@ -99,21 +109,22 @@ function AddEditBoardModal({ setBoardModalOpen, type }) {
         </div>
         <button
           onClick={() => {
-            setNewColumns((state) => [
-              ...state,
-              { name: "", task: [], id: uuidv4() },
+            setNewColumns((prevState) => [
+              ...prevState,
+              { name: "", tasks: [], id: uuidv4() },
             ]);
           }}
           className="NewCol"
         >
           + Add New Column
         </button>
-        {/*type === 'add' Header*/}
         <button
           className="SaveCol"
           onClick={() => {
             const isValid = validate();
-            if (isValid === true) onsubmit(type);
+            if (isValid) {
+              onSubmit(type);
+            }
           }}
         >
           {type === "add" ? "Create New Board" : "Save Changes"}
