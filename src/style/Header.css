@@ -50,7 +50,7 @@
 }
 
 
-button:hover {
+.NavbarBtn  button:hover {
     background-color: #fff;
     border: 1px solid #635fc7;
     color: #635fc7;
