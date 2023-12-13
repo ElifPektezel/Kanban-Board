@@ -1,0 +1,98 @@
+.red{
+    background: red;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+.orange{
+    background: orange;
+    width: 17px;
+    height: 17px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+.blue{
+    background: blue;
+    width: 17px;
+    height: 17px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+.purple{
+    background: purple;
+    width: 17px;
+    margin-right: 12px;
+    height: 17px;
+    border-radius: 50%;
+}
+.green{
+    background: green;
+    width: 17px;
+    margin-right: 12px;
+    height: 17px;
+    border-radius: 50%;
+}
+.indigo {
+    background:indigo ;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+}
+.yellow {
+    background: yellow;
+    width: 17px;
+    margin-right: 12px;
+    height: 17px;
+    border-radius: 50%;
+}
+.pink {
+    background: pink;
+    width: 17px;
+    margin-right: 12px;
+    height: 17px;
+    border-radius: 50%;
+}
+.sky {
+    background:skyblue ;
+    width: 17px;
+    margin-right: 12px;
+    height: 17px;
+    border-radius: 50%;
+}
+
+.TaskCartModal{
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.TaskCartModal p{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding-left: 8px;
+    
+    
+}
+.TaskCart{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    background: white;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.1);
+    margin: 8px;
+}
+
+.TaskCart p:nth-child(1){
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+   }
+.TaskCart p:nth-child(2){
+    color: gray;
+    margin: 0;
+   }

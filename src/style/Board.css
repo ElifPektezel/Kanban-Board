@@ -10,6 +10,9 @@
     overflow: scroll;
     background-color: #00000080;
 }
+.BoardCart p{
+    cursor: pointer;
+}
 .ModalSection{
     display: flex;
     flex-direction: column;

@@ -24,7 +24,7 @@ function App() {
       {boards.length > 0 ? (
         <>
           <Header boardModalOpen={boardModalOpen} setBoardModalOpen={setBoardModalOpen} />
-          <Center />
+          <Center boardModalOpen={boardModalOpen} setBoardModalOpen={setBoardModalOpen}/>
         </>
       ) : (
         <EmptyBoard type='add' />

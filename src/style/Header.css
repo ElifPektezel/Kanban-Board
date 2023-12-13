@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-    height: 96px;
+    height: min-content;
 }
 
 .NavbarLogo {
