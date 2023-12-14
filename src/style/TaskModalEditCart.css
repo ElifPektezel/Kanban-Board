@@ -1,0 +1,65 @@
+.TaskModalEditCart {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    background-color: #00000080;
+}
+
+.EditCart {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background-color: white;
+    color: gray;
+    font-weight: 600;
+    width: 450px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.EditCartHeader {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 450px;
+    height: 42px;
+    align-items: center;
+}
+
+.EditCartHeader h1 {
+    margin: 0;
+
+}
+
+.EditCartHeader img {
+    width: 7px;
+    height: 20px;
+
+}
+
+.TaskDescription{
+    padding: 0 !important;
+}
+.TaskSelect{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+.TaskSelect select{
+margin-left: 32px;
+background: transparent;
+border: 1px solid #757575;
+padding: 8px;
+border-radius: 5px;
+width: 128px;
+height: 32px;
+ 
+}
