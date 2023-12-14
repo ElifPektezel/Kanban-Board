@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import '../style/TaskModalEditCart.css'
+import "../style/TaskModalEditCart.css";
 import ElipsisMenu from "../components/ElipsisMenu";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
 import boardsSlice from "../redux/boardSlice";
 import Subtask from "../components/Subtask";
 import AddEditTaskModal from "../modals/AddEditTaskModal";
 import DeleteModal from "../modals/DeleteModal";
-
 
 function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   const dispatch = useDispatch();
@@ -72,24 +71,24 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
   };
 
   return (
-    <div
-      onClick={onClose}
-      className="TaskModalEditCart"
-    >
+    <div onClick={onClose} className="TaskModalEditCart">
       {/* MODAL SECTION */}
 
       <div className="EditCart">
         <div className="EditCartHeader">
-          <h1 className="">{task.title}</h1>
-
-          <img
-            onClick={() => {
-              setIsElipsisMenuOpen((prevState) => !prevState);
-            }}
-            src={elipsis}
-            alt="elipsis"
-            className=""
-          />
+          <div>
+            <h3 className="">{task.title}</h3>
+          </div>
+          <div>
+            <img
+              onClick={() => {
+                setIsElipsisMenuOpen((prevState) => !prevState);
+              }}
+              src={elipsis}
+              alt="elipsis"
+              className=""
+            />
+          </div>
           {isElipsisMenuOpen && (
             <ElipsisMenu
               setOpenEditModal={setOpenEditModal}
@@ -98,9 +97,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
             />
           )}
         </div>
-        <p className="">
-          {task.description}
-        </p>
+        <p className="">{task.description}</p>
 
         <p className="TaskDescription">
           Subtasks ({completed} of {subtasks.length})
@@ -108,7 +105,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
 
         {/* subtasks section */}
 
-        <div className="">
+        <div className="TaskOption">
           {subtasks.map((subtask, index) => {
             return (
               <Subtask
@@ -124,14 +121,10 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
         {/* Current Status Section */}
 
         <div className="TaskSelect">
-          <label className="">
-            Current Status
-          </label>
-          <select
-            className=""
-            value={status}
-            onChange={onChange}
-          >
+          <div className="TaskSelectLabel">
+            <label className="">Current Status</label>
+          </div>
+          <select className="" value={status} onChange={onChange}>
             {columns.map((col, index) => (
               <option className="status-options" key={index}>
                 {col.name}

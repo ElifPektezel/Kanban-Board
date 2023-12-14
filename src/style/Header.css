@@ -1,5 +1,6 @@
 .Navbar {
     width: 100%;
+    padding: 16px;
 }
 
 .NavbarNav {
@@ -86,6 +87,7 @@
     justify-content: flex-start;
     align-items: center;
     color: black;
+    margin-top: 16px;
 }
 
 .BoardItem {
@@ -100,6 +102,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 16px;
+
 }
 
 .NewBoard p {
@@ -112,8 +116,11 @@
     padding: 16px;
     border-radius: 8px;
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.2);
-    width: 128px;
+    width: auto;
     margin-top: 16px;
+    z-index: 999;
+    position: absolute;
+    background: white;
 }
 .SelectBoard p {
     margin-top: 8px;

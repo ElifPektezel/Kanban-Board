@@ -1,6 +1,8 @@
 .TaskModals{
     display: flex;
     justify-content: space-evenly;
-    background-color: #d1d3da;
+    background-color: #f4f8fc;
+    height: 100%;
+    padding-top: 16px;
 
 }

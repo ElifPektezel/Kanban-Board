@@ -26,9 +26,8 @@
 
 .EditCartHeader {
     display: flex;
-    position: relative;
     justify-content: space-between;
-    width: 450px;
+    width: 100%;
     height: 42px;
     align-items: center;
 }
@@ -49,17 +48,32 @@
 }
 .TaskSelect{
     display: flex;
-    justify-content:flex-start;
+    flex-direction: column;
+    justify-content: flex-start ;
     align-items: center;
+}
+.TaskSelectLabel{
+    width: 100%;
+    margin-bottom: 8px;
 }
 
 .TaskSelect select{
-margin-left: 32px;
+
 background: transparent;
 border: 1px solid #757575;
 padding: 8px;
 border-radius: 5px;
-width: 128px;
-height: 32px;
+width:100%;
+
  
+}
+.TaskOption div{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    width:auto;
+    height: 32px;
+    background-color: #f4f8fc;
+    padding: 5px;
+    border-radius: 5px;
 }
